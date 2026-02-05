@@ -431,4 +431,4 @@ app.add_route(ApiHandlers.health, "/api/health", methods=["GET"], name="api_heal
 # 10. Entry Point
 # ==========================================
 if __name__ == "__main__":
-    app.run(host="::", port=8080, single_process=True, access_log=True, motd=True)
+    app.run(host="0.0.0.0", port=8080, single_process=True, access_log=True, motd=True)
