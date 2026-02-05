@@ -1,0 +1,65 @@
+User-agent: *
+Allow: /
+Allow: /locations
+Allow: /leaderboard
+Allow: /health
+Allow: /reliability
+Allow: /statistics
+Disallow: /api/
+Disallow: /static/
+Disallow: /templates/
+Disallow: /modules/
+Disallow: /.well-known/
+Disallow: /login
+
+# Crawl-delay to be nice to the server
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://urdashboard.com/sitemap.xml
+
+# Additional security directives
+User-agent: *
+Disallow: /*.sql$
+Disallow: /*.db$
+Disallow: /*.log$
+Disallow: /*.git$
+Disallow: /*.env$
+Disallow: /*.config$
+Disallow: /*.ini$
+Disallow: /*.conf$
+Disallow: /*.bak$
+Disallow: /*.backup$
+Disallow: /*.old$
+Disallow: /*.tmp$
+Disallow: /*.temp$
+Disallow: /*.swp$
+Disallow: /*~$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.gz$
+Disallow: /*.rar$
+Disallow: /*.7z$
+
+# Block common sensitive paths
+Disallow: /admin
+Disallow: /administrator
+Disallow: /wp-admin
+Disallow: /wp-login
+Disallow: /phpmyadmin
+Disallow: /mysql
+Disallow: /config
+Disallow: /debug
+Disallow: /test
+Disallow: /tests
+Disallow: /temp
+Disallow: /tmp
+Disallow: /logs
+Disallow: /cgi-bin
+Disallow: /bin
+Disallow: /etc
+Disallow: /var
+Disallow: /usr
+Disallow: /dev
+Disallow: /proc
+Disallow: /sys

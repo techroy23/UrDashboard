@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block page_header %}
+<h1 class="mb-0"><i class="bi bi-bar-chart-fill me-2"></i>Statistics</h1>
+{% endblock %}
+
+{% block content %}
+<div id="statistics-container" class="row">
+    <div class="col-12">
+        <div id="stats-display" class="mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card glass-card mb-3">
+                        <div class="card-header">Paid Data</div>
+                        <div class="card-body">
+                            <div class="skeleton skeleton-title"></div>
+                            <div class="skeleton skeleton-text" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card glass-card mb-3">
+                        <div class="card-header">Unpaid Data</div>
+                        <div class="card-body">
+                            <div class="skeleton skeleton-title"></div>
+                            <div class="skeleton skeleton-text" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- D3 Chart Section -->
+            <div class="card glass-card mb-4 mt-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Unpaid Data</h5>
+                    <div id="d3-chart-container" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+
+            <!-- Data Table Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card glass-card mb-3">
+                        <div class="card-header">History</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped" id="stats-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp (EST)</th>
+                                            <th>Paid Data</th>
+                                            <th>Unpaid Data</th>
+                                            <th>Delta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Table content will be injected via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="/static/js/statistics.js?v={{ unix_epoch }}"></script>
+{% endblock %}

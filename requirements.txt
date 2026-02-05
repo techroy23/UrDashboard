@@ -1,0 +1,6 @@
+sanic
+jinja2
+requests
+tenacity
+aiohttp
+urllib3

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="text-center">
+        <!-- Hidden text for bots/crawlers -->
+        <h1 class="seo-text">404 - Page Not Found</h1>
+        <h2 class="seo-text">The requested page could not be found on this server</h2>
+
+        <a href="/" class="btn btn-primary btn-lg mb-5">
+            <i class="bi bi-house-door me-2"></i>Go Home
+        </a>
+
+        <div class="glass-card meme-wrapper">
+            <img id="meme-image" src="" alt="4 oh 4 What are you doing here?"
+                onerror="this.src='https://api.memegen.link/images/astronaut/4_oh_4/what_are_you_doing_here.gif'">
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const memeList = ['fine', 'morpheus', 'facepalm', 'ams', 'apcr', 'astronaut', 'fry', 'waygd'];
+        const randomMeme = memeList[Math.floor(Math.random() * memeList.length)];
+        const img = document.getElementById('meme-image');
+        img.src = `https://api.memegen.link/images/${randomMeme}/4_oh_4/what_are_you_doing_here.gif`;
+    })();
+</script>
+
+<style>
+    /* Hide the common header on 404 page */
+    #common-header {
+        display: none !important;
+    }
+
+    /* Hidden text for bots/crawlers - invisible to users */
+    .seo-text {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+
+    /* Glass card wrapper for meme - fixed 700x700px */
+    .meme-wrapper {
+        width: 500px;
+        height: 500px;
+        max-width: 100%;
+        max-height: 100vh;
+        margin: 0 auto;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .meme-wrapper img {
+        max-width: calc(100% - 2rem);
+        max-height: calc(100% - 2rem);
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 0.5rem;
+        display: block;
+    }
+</style>
+{% endblock %}

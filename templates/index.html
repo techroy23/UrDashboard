@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block page_header %}
+<h1 class="mb-0"><i class="bi bi-house-fill me-2"></i>Home</h1>
+{% endblock %}
+
+{% block content %}
+<div id="loading-overlay" class="d-none text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Checking session...</p>
+</div>
+
+<div id="main-content" class="text-center py-5">
+    <!-- Loading Skeleton View (Default) -->
+    <div id="skeleton-view" class="card glass-card mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+                <div class="col-4">
+                    <div class="skeleton skeleton-button" style="aspect-ratio: 1/1; border-radius: 8px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guest View (Not Logged In) -->
+    <div id="guest-view" class="card glass-card mx-auto" style="max-width: 400px; display: none;">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-4">
+                    <a href="/login" class="btn btn-primary w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-box-arrow-in-right d-block fs-4 mb-1"></i>
+                        <span class="small">Login</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="https://ur.xyz/" target="_blank" class="btn btn-outline-secondary w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-globe2 d-block fs-4 mb-1"></i>
+                        <span class="small">UR.XYZ</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="https://ur.io/c?bonus=0MYG84" target="_blank" class="btn btn-outline-success w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-box-arrow-up-right d-block fs-4 mb-1"></i>
+                        <span class="small">UR.IO</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quote below card (Guest View) -->
+    <div id="guest-quote" class="text-center mt-3" style="max-width: 400px; margin: 0 auto; display: none;">
+        <p class="text-muted fst-italic quote-transition" id="random-quote" style="font-size: 0.9rem;">
+            UrNetwork: Say Goodbye to your traditional VPN!
+        </p>
+    </div>
+
+    <!-- Logged In View -->
+    <div id="loggedin-view" class="card glass-card mx-auto" style="max-width: 400px; display: none;">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-4">
+                    <a href="/statistics" class="btn btn-primary w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-bar-chart-fill d-block fs-4 mb-1"></i>
+                        <span class="small">Statistics</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="/reliability" class="btn btn-info w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-speedometer2 d-block fs-4 mb-1"></i>
+                        <span class="small">Reliability</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="/locations" class="btn btn-success w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-geo-alt-fill d-block fs-4 mb-1"></i>
+                        <span class="small">Locations</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="/leaderboard" class="btn btn-warning w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-trophy-fill d-block fs-4 mb-1"></i>
+                        <span class="small">Leaderboard</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="/health" class="btn btn-danger w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-heart-pulse-fill d-block fs-4 mb-1"></i>
+                        <span class="small">Health</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="https://ur.xyz/" target="_blank" class="btn btn-outline-primary w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-globe2 d-block fs-4 mb-1"></i>
+                        <span class="small">UR.XYZ</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="https://ur.io/c?bonus=0MYG84" target="_blank" class="btn btn-outline-secondary w-100 d-flex flex-column justify-content-center align-items-center" style="aspect-ratio: 1/1;">
+                        <i class="bi bi-box-arrow-up-right d-block fs-4 mb-1"></i>
+                        <span class="small">UR.IO</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/home.js?v={{ unix_epoch }}"></script>
+{% endblock %}

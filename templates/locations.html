@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Provider Locations{% endblock %}
+
+{% block page_header %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i>Provider Locations</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="locations-container" class="row">
+    <div class="col-12">
+        <!-- D3.js Bubble Chart Card -->
+        <div class="card glass-card mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Provider Distribution by Location</h5>
+                <div id="bubble-chart-loader">
+                    <div class="skeleton skeleton-chart"></div>
+                </div>
+                <div id="bubble-chart-container" style="display: none;">
+                    <div id="d3-bubble-chart" style="width: 100%; height: 500px;"></div>
+                </div>
+                <div class="text-center mt-2">
+                    <small class="text-muted">Showing countries with 2+ providers • Bubble size = provider count • Hover for details</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Locations Tabs Card -->
+        <div class="card glass-card">
+            <div class="card-header border-bottom-0 pt-3 pb-0">
+                <ul class="nav nav-tabs card-header-tabs" id="locationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">
+                            <i class="bi bi-list-ul me-2"></i>Overview
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button" role="tab" aria-controls="trends" aria-selected="false">
+                            <i class="bi bi-graph-up me-2"></i>Trends
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="locationTabsContent">
+                    
+                    <!-- Tab 1: Overview (Country, Providers, Stable, Privacy) -->
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle" id="overviewTable">
+                                <thead>
+                                    <tr>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('name')">
+                                            Country <span id="sort-icon-name"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('provider_count')">
+                                            Providers <span id="sort-icon-provider_count"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('stable')">
+                                            Stable <span id="sort-icon-stable"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('strong_privacy')">
+                                            Privacy <span id="sort-icon-strong_privacy"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overviewTableBody">
+                                    <!-- Content rendered by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Trends (Country, Providers, Deltas) -->
+                    <div class="tab-pane fade" id="trends" role="tabpanel" aria-labelledby="trends-tab">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle" id="trendsTable">
+                                <thead>
+                                    <tr>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('name')">
+                                            Country <span id="sort-icon-name-trends"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('provider_count')">
+                                            Providers <span id="sort-icon-provider_count-trends"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('delta_1h')">
+                                            1hr <span id="sort-icon-delta_1h"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('delta_3h')">
+                                            3hr <span id="sort-icon-delta_3h"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('delta_6h')">
+                                            6hr <span id="sort-icon-delta_6h"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('delta_12h')">
+                                            12hr <span id="sort-icon-delta_12h"></span>
+                                        </th>
+                                        <th style="cursor: pointer;" onclick="D3Locations.sortTable('delta_24h')">
+                                            24hr <span id="sort-icon-delta_24h"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trendsTableBody">
+                                    <!-- Content rendered by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="/static/js/locations.js?v={{ unix_epoch }}"></script>
+{% endblock %}

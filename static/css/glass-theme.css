@@ -1,0 +1,155 @@
+/* Glassmorphism Effect for Cards */
+.glass-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Light Mode Glass Style */
+[data-bs-theme="light"] .glass-card {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Dark Mode Glass Style */
+[data-bs-theme="dark"] .glass-card {
+    background: rgba(33, 37, 41, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure children are transparent so glass effect works */
+.glass-card .card-header,
+.glass-card .card-footer {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light mode separator */
+}
+
+.glass-card .card-body {
+    background-color: transparent !important;
+}
+
+/* Dark mode separator adjustments */
+[data-bs-theme="dark"] .glass-card .card-header,
+[data-bs-theme="dark"] .glass-card .card-footer {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Table Support */
+.glass-card .table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: transparent;
+    --bs-table-active-bg: transparent;
+    background-color: transparent !important;
+}
+
+/* Adjust hover for glass feel */
+.glass-card .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="light"] .glass-card .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(0, 0, 0, 0.05);
+}
+
+/* Sticky Glass Header for Tables - REMOVED */
+
+/* Quote Fade Effect */
+.quote-transition {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
+
+/* Skeleton Loading */
+.skeleton {
+    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+[data-bs-theme="light"] .skeleton {
+    background: rgba(0, 0, 0, 0.05);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.05) 25%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.05) 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.skeleton-title {
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    width: 50%;
+}
+
+.skeleton-chart {
+    height: 300px;
+    width: 100%;
+}
+
+/* Dropdown Hover Logic handled by JS (App.base.initDropdownHover) */
+/* This CSS ensures correct positioning when JS adds the .show class */
+@media (min-width: 992px) {
+    .dropdown-menu.show {
+        margin-top: 0.125rem;
+        top: 100%;
+    }
+    
+    .dropdown-menu-end.show {
+        right: 0 !important;
+        left: auto !important;
+    }
+}
+
+.dropdown-menu {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(var(--bs-body-bg-rgb), 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Toast Theme Support - Ensure proper text contrast in both modes */
+.toast {
+    color: var(--bs-body-color) !important;
+}
+
+.toast .btn-close {
+    filter: none !important;
+}
+
+[data-bs-theme="dark"] .toast .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%) !important;
+}
+
+/* Spinning Animation for Check Now Button */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}

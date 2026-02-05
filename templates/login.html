@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card glass-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Login</span>
+                </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="toggleModeBtn">
+                    Switch to Auth Code
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="login-error" class="alert alert-danger d-none" role="alert"></div>
+                <div id="login-success" class="alert alert-success d-none" role="alert">
+                    <h5>Login Successful!</h5>
+                    <p>Redirecting to dashboard...</p>
+                </div>
+
+                <form id="loginForm">
+                    <!-- Hidden field to track mode -->
+                    <input type="hidden" name="login_mode" id="loginMode" value="password">
+
+                    <!-- Password Section -->
+                    <div id="passwordSection">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                    </div>
+
+                    <!-- Auth Code Section -->
+                    <div id="authCodeSection" class="d-none">
+                        <div class="mb-3">
+                            <label for="auth_code" class="form-label">User Auth Code</label>
+                            <input type="text" class="form-control" id="auth_code" name="auth_code">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100" id="loginBtn">
+                        <span id="loginBtnText">Login</span>
+                        <span id="loginBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/login.js?v={{ unix_epoch }}"></script>
+{% endblock %}

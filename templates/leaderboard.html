@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block page_header %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-0"><i class="bi bi-trophy-fill me-2"></i>Network Leaderboard</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="leaderboard-container" class="row">
+    <!-- Row for Rank and Transfer Cards -->
+    <div class="col-md-6 mb-4">
+        <div class="card glass-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted text-uppercase small fw-bold">Your Current Rank</h6>
+                <h2 class="mb-0" id="user-rank">
+                    <div class="skeleton skeleton-title" style="width: 100px;"></div>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card glass-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted text-uppercase small fw-bold">Your Total Transfer</h6>
+                <h2 class="mb-0" id="user-transfer">
+                    <div class="skeleton skeleton-title" style="width: 150px;"></div>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- D3.js Bubble Chart Card -->
+    <div class="col-12">
+        <div class="card glass-card mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Network Transfer Distribution</h5>
+                <div id="bubble-chart-loader">
+                    <div class="skeleton skeleton-chart"></div>
+                </div>
+                <div id="bubble-chart-container" style="display: none;">
+                    <div id="d3-bubble-chart" style="width: 100%; height: 500px;"></div>
+                </div>
+                <div class="text-center mt-2">
+                    <small class="text-muted">Bubble size = Total Transfer • Hover for details • Top performers highlighted</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Card occupying full width -->
+    <div class="col-12 mb-4">
+        <div class="card glass-card">
+            <div class="card-body text-center text-muted small">
+                <i class="bi bi-info-circle me-1"></i>
+                The leaderboard represents the cumulative transfer from the last four payment cycles and is updated following each successful settlement.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <!-- Global Leaderboard Table -->
+        <div class="card glass-card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Top Contributing Networks</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle" id="leaderboardTable">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Network Name</th>
+                                <th class="text-end">Total Transfer</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardTableBody">
+                            <!-- Skeleton Rows -->
+                            <tr>
+                                <td><div class="skeleton skeleton-text" style="width: 20px;"></div></td>
+                                <td><div class="skeleton skeleton-text" style="width: 150px;"></div></td>
+                                <td><div class="skeleton skeleton-text ms-auto" style="width: 80px;"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="skeleton skeleton-text" style="width: 20px;"></div></td>
+                                <td><div class="skeleton skeleton-text" style="width: 120px;"></div></td>
+                                <td><div class="skeleton skeleton-text ms-auto" style="width: 80px;"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="skeleton skeleton-text" style="width: 20px;"></div></td>
+                                <td><div class="skeleton skeleton-text" style="width: 180px;"></div></td>
+                                <td><div class="skeleton skeleton-text ms-auto" style="width: 80px;"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="/static/js/leaderboard.js?v={{ unix_epoch }}"></script>
+{% endblock %}

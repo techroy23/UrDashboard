@@ -1,0 +1,25 @@
+#snake-bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Behind everything */
+    filter: blur(8px); /* 25% blur effect roughly */
+    opacity: 0.6; /* Slight transparency to not overpower */
+    pointer-events: none; /* Let clicks pass through */
+}
+
+/* Ensure content is readable */
+body {
+    background-color: transparent !important; /* Let canvas show through */
+}
+
+/* Fallback background color if canvas fails or for specific themes */
+[data-bs-theme="dark"] body {
+    background-color: rgba(33, 37, 41, 0.8) !important;
+}
+
+[data-bs-theme="light"] body {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}

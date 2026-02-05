@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Network Reliability{% endblock %}
+
+{% block page_header %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-0"><i class="bi bi-speedometer2 me-2"></i>Network Reliability</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-container" class="row">
+    <div class="col-12">
+        <!-- Controls Card -->
+        <div class="card glass-card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <!-- Data Toggles -->
+                    <div class="d-flex gap-3 align-items-center">
+                        <span class="text-muted small">Show:</span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="showWeight" checked>
+                            <label class="form-check-label" for="showWeight">Weight</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="showClients" checked>
+                            <label class="form-check-label" for="showClients">Clients</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="showTotal" checked>
+                            <label class="form-check-label" for="showTotal">Total</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chart Card -->
+        <div class="card glass-card mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Reliability Metrics (1-Hour Intervals)</h5>
+                <div id="chart-loader">
+                    <div class="skeleton skeleton-chart"></div>
+                </div>
+                <div id="chart-container" style="display: none;">
+                    <svg id="d3-chart" width="100%" height="400"></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="card glass-card mb-4">
+            <div class="card-body py-2">
+                <div class="d-flex justify-content-center gap-4 flex-wrap">
+                    <div class="d-flex align-items-center">
+                        <div style="width: 20px; height: 3px; background: rgb(75, 192, 192); margin-right: 8px;"></div>
+                        <span class="text-muted small">Reliability Weight</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div style="width: 20px; height: 3px; background: rgb(255, 99, 132); margin-right: 8px;"></div>
+                        <span class="text-muted small">Client Count</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div style="width: 20px; height: 3px; background: rgb(54, 162, 235); margin-right: 8px;"></div>
+                        <span class="text-muted small">Total Client Count</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="row mb-4" id="stats-summary">
+            <div class="col-md-4">
+                <div class="card glass-card mb-3">
+                    <div class="card-body text-center">
+                        <div class="skeleton skeleton-text mx-auto" style="width: 40%;"></div>
+                        <div class="skeleton skeleton-title mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card glass-card mb-3">
+                    <div class="card-body text-center">
+                        <div class="skeleton skeleton-text mx-auto" style="width: 40%;"></div>
+                        <div class="skeleton skeleton-title mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card glass-card mb-3">
+                    <div class="card-body text-center">
+                        <div class="skeleton skeleton-text mx-auto" style="width: 40%;"></div>
+                        <div class="skeleton skeleton-title mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Country Multipliers -->
+        <div class="card glass-card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Country Multipliers</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle" id="countryTable">
+                        <thead>
+                            <tr>
+                                <th style="cursor: pointer;" onclick="D3Reliability.sortCountries('country')">
+                                    Country <span id="sort-icon-country"></span>
+                                </th>
+                                <th style="cursor: pointer;" onclick="D3Reliability.sortCountries('reliability_multiplier')">
+                                    Multiplier <span id="sort-icon-reliability_multiplier">&#9660;</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="countryTableBody">
+                            <tr>
+                                <td><div class="skeleton skeleton-text"></div></td>
+                                <td><div class="skeleton skeleton-text"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="skeleton skeleton-text"></div></td>
+                                <td><div class="skeleton skeleton-text"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="skeleton skeleton-text"></div></td>
+                                <td><div class="skeleton skeleton-text"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- D3.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="/static/js/reliability.js?v={{ unix_epoch }}"></script>
+{% endblock %}
